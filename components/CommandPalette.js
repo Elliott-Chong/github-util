@@ -39,13 +39,13 @@ function CommandPalette({ repos }) {
     <Dialog
       open={open}
       onClose={() => setOpen(true)}
-      className="fixed inset-0 pt-[25vh] overflow-y-auto"
+      className="fixed inset-0 overflow-y-auto"
     >
       <Dialog.Overlay className="fixed inset-0 bg-gray-900" />
 
       <Combobox
         as={"div"}
-        className="bg-white overflow-hidden relative max-w-[90vw] md:max-w-[50vw] mx-auto rounded-xl shadow-2xl divide-y"
+        className="bg-white top-1/2 -translate-y-1/2 overflow-hidden relative max-w-[90vw] md:max-w-[50vw] mx-auto rounded-xl shadow-2xl divide-y"
         onChange={(repo) => {
           window.location.href = repo.html_url;
         }}
@@ -71,7 +71,7 @@ function CommandPalette({ repos }) {
                   {({ active }) => {
                     return (
                       <div
-                        className={`px-8 py-4 text-sm md:text-xl font-mono gap-4 flex items-center text-md ${
+                        className={`md:px-8 px-4 py-4 text-sm md:text-xl font-mono gap-2 md:gap-4 flex items-center text-md ${
                           active && "bg-orange-400 font-bold text-white"
                         }`}
                       >
