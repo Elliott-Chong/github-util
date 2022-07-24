@@ -1,4 +1,4 @@
-export default [
+var repos = [
   {
     id: 479729789,
     node_id: "R_kgDOHJgYfQ",
@@ -4934,3 +4934,13 @@ export default [
     default_branch: "main",
   },
 ];
+function updateRepos(new_repos) {
+  repos = new_repos;
+}
+var last_updated_at = new Date();
+const update_last_updated_at = (val) => {
+  last_updated_at = val;
+};
+
+export { updateRepos };
+export default repos;
