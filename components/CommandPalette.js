@@ -34,7 +34,7 @@ function CommandPalette({ repos }) {
     if (query == "") {
       setFilteredRepos(repos);
     }
-  }, [query, repos]);
+  }, [query, repos, setFilteredRepos]);
   return (
     <Dialog
       open={open}

@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Elliott's GitHub</title>
+        <title>Elliott&apos;s GitHub</title>
       </Head>
       <CommandPalette repos={repos} />
       {/* <UpdateTiming setRepos={setRepos} /> */}
