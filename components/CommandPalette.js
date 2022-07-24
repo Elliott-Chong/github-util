@@ -79,7 +79,7 @@ function CommandPalette({ repos }) {
                           {repo.name}
                         </a>
                         <span
-                          className={`text-sm rounded-full text-white py-1 px-2 ${
+                          className={`text-sm rounded-full text-white whitespace-nowrap py-1 px-2 ${
                             active ? "bg-orange-500" : "bg-orange-500"
                           } `}
                         >
