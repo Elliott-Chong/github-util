@@ -8,9 +8,13 @@ export default function Home() {
   const [repos, setRepos] = React.useState([]);
   React.useEffect(() => {
     const fetchRepos = async () => {
-      const response = await axios.get(
-        "https://api.github.com/users/elliott-chong/repos?per_page=100"
-      );
+      const response = await axios.get(" https://api.github.com/user/repos", {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+          Accept: "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      });
       setRepos(response.data);
     };
     fetchRepos();

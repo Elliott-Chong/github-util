@@ -50,13 +50,13 @@ function CommandPalette({ repos }) {
           window.location.href = repo.html_url;
         }}
       >
-        <div className="flex items-center py-2 px-4">
+        <div className="flex items-center px-4 py-2">
           <SearchIcon className="w-6 h-6" />
           <Combobox.Input
             onChange={(e) => {
               setQuery(e.target.value);
             }}
-            className="w-full outline-none bg-transparent py-2 px-4 text-xl font-spacemono"
+            className="w-full px-4 py-2 text-xl bg-transparent outline-none font-spacemono"
             placeholder="Search..."
           />
         </div>
@@ -79,7 +79,7 @@ function CommandPalette({ repos }) {
                           {repo.name}
                         </a>
                         <span
-                          className={`text-sm rounded-full text-white whitespace-nowrap py-1 px-2 ${
+                          className={`text-sm rounded-full text-white whitespace-nowrap py-1 px-4 ${
                             active ? "bg-orange-500" : "bg-orange-500"
                           } `}
                         >

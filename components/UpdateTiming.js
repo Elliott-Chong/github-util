@@ -5,15 +5,21 @@ import { updateRepos } from "../repos";
 function UpdateTiming({ setRepos }) {
   const fetchRepos = async () => {
     const response = await axios.get(
-      "https://api.github.com/users/elliott-chong/repos?per_page=100"
+      "https://api.github.com/users/elliott-chong/repos?per_page=100",
+      {
+        headers: {
+          Authorization: `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+        },
+      }
     );
     setRepos(response.data);
     updateRepos(response.data);
   };
+  console.log(process.env.NEXT_PUBLIC_GITHUB_TOKEN);
   return (
     <div className="fixed bottom-[1rem] text-white flex items-center gap-2 z-[50] right-[1rem]">
       <button
-        className="py-1 px-2 bg-orange-400 rounded-full font-bold"
+        className="px-2 py-1 font-bold bg-orange-400 rounded-full"
         onClick={() => {
           fetchRepos();
         }}
