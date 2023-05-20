@@ -2,11 +2,13 @@ import React from "react";
 import { Dialog, Combobox } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/outline";
 import moment from "moment";
+import axios from "axios";
 
 function CommandPalette({ repos }) {
   const [open, setOpen] = React.useState(true);
   const [query, setQuery] = React.useState("");
   const [filteredRepos, setFilteredRepos] = React.useState(repos);
+  const [quote, setQuote] = React.useState("");
 
   React.useEffect(() => {
     const keyDown = (e) => {
@@ -24,6 +26,32 @@ function CommandPalette({ repos }) {
   const filtered_repos = repos.filter((repo) =>
     repo.name.toLowerCase().includes(query.toLowerCase())
   );
+
+  React.useEffect(() => {
+    const fetchQuote = () => {
+      const options = {
+        method: "GET",
+        url: "https://inspiring-quotes.p.rapidapi.com/random",
+        headers: {
+          "X-RapidAPI-Key":
+            "1ae952a8a0msh651fc3a8bb332a9p181474jsnc121f25ba418",
+          "X-RapidAPI-Host": "inspiring-quotes.p.rapidapi.com",
+        },
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          setQuote(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+    fetchQuote();
+    // const inter = setInterval(fetchQuote, 5000);
+    // return () => clearInterval(inter);
+  }, []);
 
   React.useEffect(() => {
     setFilteredRepos(
@@ -63,7 +91,7 @@ function CommandPalette({ repos }) {
         {filteredRepos.length > 0 && (
           <Combobox.Options
             static
-            className="py-4 max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-orange-300"
+            className="py-4 max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-slate-600"
           >
             {filtered_repos.map((repo) => {
               return (
@@ -72,16 +100,14 @@ function CommandPalette({ repos }) {
                     return (
                       <div
                         className={`md:px-8 px-4 py-4 text-sm md:text-xl font-mono gap-2 md:gap-4 flex items-center text-md ${
-                          active && "bg-orange-400 font-bold text-white"
+                          active && "bg-slate-800 font-bold text-white"
                         }`}
                       >
                         <a rel="noreferrer" href={repo.html_url}>
                           {repo.name}
                         </a>
                         <span
-                          className={`text-sm rounded-full text-white whitespace-nowrap py-1 px-4 ${
-                            active ? "bg-orange-500" : "bg-orange-500"
-                          } `}
+                          className={`text-sm rounded-full text-white whitespace-nowrap py-1 px-4 bg-slate-700`}
                         >
                           {moment
                             .duration(moment(repo.updated_at).diff(Date.now()))

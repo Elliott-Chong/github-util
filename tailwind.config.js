@@ -10,6 +10,7 @@ module.exports = {
         spacemono: '"Space Mono", monospace',
         karla: "Karla, sans-serif",
         poppins: "Poppins, sans-serif",
+        dmserif: "'DM Serif Display', serif",
       },
     },
   },
