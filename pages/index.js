@@ -7,6 +7,10 @@ import data from "../repos";
 export default function Home() {
   const [repos, setRepos] = React.useState([]);
   React.useEffect(() => {
+    const repos = localStorage.getItem("repos");
+    if (repos) {
+      setRepos(JSON.parse(repos));
+    }
     const fetchRepos = async () => {
       const response = await axios.get(
         " https://api.github.com/user/repos?per_page=100",
@@ -18,6 +22,7 @@ export default function Home() {
           },
         }
       );
+      localStorage.setItem("repos", JSON.stringify(response.data));
       setRepos(response.data);
     };
     fetchRepos();
