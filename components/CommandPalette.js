@@ -27,31 +27,7 @@ function CommandPalette({ repos }) {
     repo.name.toLowerCase().includes(query.toLowerCase())
   );
 
-  React.useEffect(() => {
-    const fetchQuote = () => {
-      const options = {
-        method: "GET",
-        url: "https://inspiring-quotes.p.rapidapi.com/random",
-        headers: {
-          "X-RapidAPI-Key":
-            "1ae952a8a0msh651fc3a8bb332a9p181474jsnc121f25ba418",
-          "X-RapidAPI-Host": "inspiring-quotes.p.rapidapi.com",
-        },
-      };
-
-      axios
-        .request(options)
-        .then(function (response) {
-          setQuote(response.data);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    };
-    fetchQuote();
-    // const inter = setInterval(fetchQuote, 5000);
-    // return () => clearInterval(inter);
-  }, []);
+  React.useEffect(() => {}, []);
 
   React.useEffect(() => {
     setFilteredRepos(
